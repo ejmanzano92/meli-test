@@ -1,6 +1,6 @@
 const { sizeMatrix, letterRows, sequenceMutant } = require('../Config/Constants');
 
-const evaluateArray = (actualDna) => {
+const evaluateDnaMutantArray = (actualDna) => {
     let sequenceCant = 0;
     for (let index = 0; index < sizeMatrix; index++) {
         if (new Set(actualDna.slice(index,index + letterRows)).size === 1) {
@@ -17,13 +17,36 @@ const evaluateArray = (actualDna) => {
 const horizontalEvaluation = (sequence) => {
     const actualDna = sequence.split("");
 
-    return evaluateArray(actualDna);
+    return evaluateDnaMutantArray(actualDna);
 }
 
 const verticalEvaluation = (dna, i) => {
     const actualDna = dna.map(d => d.charAt(i));
-    return evaluateArray(actualDna);
+    return evaluateDnaMutantArray(actualDna);
     
 }
 
-module.exports = { horizontalEvaluation, verticalEvaluation };
+const obliqueEvaluation = (dna, i) => {
+    if ((i + letterRows) > sizeMatrix || dna.length < letterRows) {
+        return 0;
+    }
+    const actualDna = dna.map((d, index) => d.charAt(i + index));
+    return evaluateDnaMutantArray(actualDna);
+    
+}
+
+const obliqueEvaluationInvert = (dna, i) => {
+    if ((i - letterRows) < 0  || dna.length < letterRows) {
+        return 0;
+    }
+    const actualDna = dna.map((d, index) => { return d.charAt(i - index)});
+    return evaluateDnaMutantArray(actualDna);
+}
+
+module.exports = {
+    horizontalEvaluation,
+    verticalEvaluation,
+    obliqueEvaluation,
+    obliqueEvaluationInvert,
+    evaluateDnaMutantArray
+};

@@ -1,6 +1,6 @@
 const validArray = require('../Utils/Validation');
-const { horizontalEvaluation, verticalEvaluation } = require('../Utils/Detect')
-const { sequenceMutant } = require('../Config/Constants');
+const { horizontalEvaluation, verticalEvaluation, obliqueEvaluation, obliqueEvaluationInvert } = require('../Utils/Detect')
+const { sequenceMutant, sizeMatrix } = require('../Config/Constants');
 class MutantService {
     /**
      * Determine if a DNA is valid
@@ -34,10 +34,17 @@ class MutantService {
         let actualSequenceMutant = 0;
         for (let i = 0; i < dna.length; i++) {
             const actualDna = dna[i];
-            actualSequenceMutant += horizontalEvaluation(actualDna) + verticalEvaluation(dna, i);
+            const sliceDna = dna.slice(i + 1, sizeMatrix);
+            actualSequenceMutant += 
+                horizontalEvaluation(actualDna) + 
+                verticalEvaluation(dna, i)
+                obliqueEvaluation(dna, i) + 
+                obliqueEvaluation(sliceDna, 0) + 
+                obliqueEvaluationInvert(dna, sizeMatrix - (i + 1)) +
+                obliqueEvaluationInvert(dna.slice(0, sizeMatrix - i - 1), sizeMatrix -1 );
             if (actualSequenceMutant >= sequenceMutant) {
                 break;
-            }   
+            }
         }
         return actualSequenceMutant >= sequenceMutant;
     }
