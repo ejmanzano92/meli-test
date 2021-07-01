@@ -34,3 +34,17 @@
 
 ## Api endpoints.
 - Check service: 
+    ```
+    curl --request GET \
+        --url https://meli-mutant-emil.herokuapp.com/meli-mutants/app/health-check/
+    ```
+
+- mutant function: 
+    ```
+        curl --request POST \
+        --url https://meli-mutant-emil.herokuapp.com/meli-mutants/mutant/ \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "dna": ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
+        }'
+    ```

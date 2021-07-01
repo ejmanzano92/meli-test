@@ -1,4 +1,4 @@
-const validArray = require('../Utils/Validation');
+const validArray = require('../Utils/Validations');
 const { horizontalEvaluation, verticalEvaluation, obliqueEvaluation, obliqueEvaluationInvert } = require('../Utils/Detect')
 const { sequenceMutant, sizeMatrix } = require('../Config/Constants');
 class MutantService {
