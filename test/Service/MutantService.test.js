@@ -1,12 +1,24 @@
-const MutantService = require('../../src/Service/MutantService')
+const MutantService = require('../../src/Service/MutantService');
 
-const dna = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
-const dnaInvalid1 = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA"]
-const dnaInvalid2 = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TACTG"]
-const dnaHuman = ["ATGCGA","CAGTGC","TTATGT","AGTACG","CCCATA","TCACTG"]
+const dna = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"];
+const dnaValid2 = ["AAAAGA","CACTGC","TTCAGT","AGACAG","TCCCCC","TCACTC"]; // oblique slice
+const dnaValid3 = ["ATGCGA","AAGTGC","TAATGT","AGAAGG","CCCATA","CCCCTC"]; // oblique slice invert
+const dnaInvalid1 = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA"];
+const dnaInvalid2 = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TACTG"];
+const dnaHuman = ["ATGCGA","CAGTGC","TTATGT","AGTACG","CCCATA","TCACTG"];
 
 test("it's a mutant", () => {
     const response = MutantService.isMutant(dna);
+    expect(response).toBe(true)
+});
+
+test("it's a mutant 2", () => {
+    const response = MutantService.isMutant(dnaValid2);
+    expect(response).toBe(true)
+});
+
+test("it's a mutant 3", () => {
+    const response = MutantService.isMutant(dnaValid3);
     expect(response).toBe(true)
 });
 

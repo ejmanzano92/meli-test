@@ -3,11 +3,12 @@ const { sizeMatrix, letterRows, sequenceMutant } = require('../Config/Constants'
 const evaluateDnaMutantArray = (actualDna) => {
     let sequenceCant = 0;
     for (let index = 0; index < sizeMatrix; index++) {
-        if (new Set(actualDna.slice(index,index + letterRows)).size === 1) {
-            sequenceCant = 1;
+        const dnaToEvalute = actualDna.slice(index,index + letterRows);
+        if (dnaToEvalute.length < letterRows) {
             break;
         }
-        if ((sizeMatrix - (index + letterRows + 1)) < 0) {
+        if (new Set(dnaToEvalute).size === 1) {
+            sequenceCant = 1;
             break;
         }
     }

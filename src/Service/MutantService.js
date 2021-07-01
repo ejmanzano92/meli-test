@@ -37,7 +37,7 @@ class MutantService {
             const sliceDna = dna.slice(i + 1, sizeMatrix);
             actualSequenceMutant += 
                 horizontalEvaluation(actualDna) + 
-                verticalEvaluation(dna, i)
+                verticalEvaluation(dna, i) +
                 obliqueEvaluation(dna, i) + 
                 obliqueEvaluation(sliceDna, 0) + 
                 obliqueEvaluationInvert(dna, sizeMatrix - (i + 1)) +
