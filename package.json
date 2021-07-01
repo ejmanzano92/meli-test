@@ -1,0 +1,25 @@
+{
+  "name": "meli",
+  "version": "0.0.1",
+  "description": "Prueba de codigo",
+  "main": "index.js",
+  "author": "Emil Hernandez",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
+    "test": "jest ./test/**",
+    "coverage": "jest --collectCoverage"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.9"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
