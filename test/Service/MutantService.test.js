@@ -10,7 +10,6 @@ test("it's a mutant", () => {
     expect(response).toBe(true)
 });
 
-
 test("it's a human", () => {
     const response = MutantService.isMutant(dnaHuman);
     expect(response).toBe(false)

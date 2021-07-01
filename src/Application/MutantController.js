@@ -15,7 +15,7 @@ mutantRouter.post('/', (req, res) => {
         res.status(httpStatusCode.OK).send(responseBody);
         return;
     }
-    res.status(httpStatusCode.FORBIDDEN).send(response);
+    res.status(httpStatusCode.FORBIDDEN).send();
 });
 
 
