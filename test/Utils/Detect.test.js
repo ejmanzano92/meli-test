@@ -13,12 +13,12 @@ const {
  * Unit testing for horizontalEvaluation
  */
 test("Valid horizontal evaluation", () => {
-    const response = horizontalEvaluation("AAAA");
+    const response = horizontalEvaluation("AAAACC");
     expect(response).toBe(1)
 });
 
 test("Invalid horizontal evaluation ", () => {
-    const response = horizontalEvaluation("TCAC");
+    const response = horizontalEvaluation("TCACCC");
     expect(response).toBe(0)
 });
 
@@ -116,6 +116,18 @@ test("evaluation Function is possible mutant", () => {
     expect(response).toBe(1)
 });
 
+test("evaluation Function is possible mutant 1", () => {
+    const mutantRows = "TGAAAA".split("");
+    const response = evaluateDnaMutantArray(mutantRows);
+    expect(response).toBe(1)
+});
+
+test("evaluation Function is possible mutant 2", () => {
+    const mutantRows = "AAAATG".split("");
+    const response = evaluateDnaMutantArray(mutantRows);
+    expect(response).toBe(1)
+});
+
 test("evaluation Function is not possible mutant 1", () => {
     const humanRows = "TTAAGT".split("");
     const response = evaluateDnaMutantArray(humanRows);
@@ -124,6 +136,18 @@ test("evaluation Function is not possible mutant 1", () => {
 
 test("evaluation Function is not possible mutant 2", () => {
     const humanRows2 = "AGAAGG".split("");
+    const response = evaluateDnaMutantArray(humanRows2);
+    expect(response).toBe(0)
+});
+
+test("evaluation Function is not possible mutant 2", () => {
+    const humanRows2 = "AAATGC".split("");
+    const response = evaluateDnaMutantArray(humanRows2);
+    expect(response).toBe(0)
+});
+
+test("evaluation Function is not possible mutant 2", () => {
+    const humanRows2 = "AACTGA".split("");
     const response = evaluateDnaMutantArray(humanRows2);
     expect(response).toBe(0)
 });
