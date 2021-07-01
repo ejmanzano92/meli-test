@@ -11,25 +11,22 @@
 
 ## Coverage
 ```
-    PASS  test/Utils/Detect.test.js
-    PASS  test/Service/MutantService.test.js
-    -------------------|---------|----------|---------|---------|-------------------
     File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
     -------------------|---------|----------|---------|---------|-------------------
-    All files          |   97.18 |    90.91 |     100 |   96.97 |                   
-    Config            |     100 |      100 |     100 |     100 |                   
-    Constants.js     |     100 |      100 |     100 |     100 |                   
-    Service           |    91.3 |       75 |     100 |   90.91 |                   
-    MutantService.js |    91.3 |       75 |     100 |   90.91 | 21,32             
-    Utils             |     100 |      100 |     100 |     100 |                   
-    Detect.js        |     100 |      100 |     100 |     100 |                   
-    Validation.js    |     100 |      100 |     100 |     100 |                   
+    All files          |    97.5 |     87.5 |     100 |   97.33 |                   
+    Config             |     100 |      100 |     100 |     100 |                   
+    Constants.js       |     100 |      100 |     100 |     100 |                   
+    Service            |   93.75 |       70 |     100 |   93.55 |                   
+    MutantService.js   |   93.75 |       70 |     100 |   93.55 | 39,43             
+    Utils              |     100 |      100 |     100 |     100 |                   
+    Detect.js          |     100 |      100 |     100 |     100 |                   
+    Validations.js     |     100 |      100 |     100 |     100 |                   
     -------------------|---------|----------|---------|---------|-------------------
 
     Test Suites: 2 passed, 2 total
     Tests:       28 passed, 28 total
     Snapshots:   0 total
-    Time:        0.423 s, estimated 1 s
+    Time:        0.784 s, estimated 1 s
 ```
 
 ## Api endpoints.

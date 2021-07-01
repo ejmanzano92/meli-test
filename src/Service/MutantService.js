@@ -1,6 +1,7 @@
 const validArray = require('../Utils/Validations');
 const { horizontalEvaluation, verticalEvaluation, obliqueEvaluation, obliqueEvaluationInvert } = require('../Utils/Detect')
 const { sequenceMutant, sizeMatrix } = require('../Config/Constants');
+const { checkIfExistsDNA, saveMutant } = require('../Domain/Repository/DnaRequests')
 class MutantService {
     /**
      * Determine if a DNA is valid
@@ -15,21 +16,31 @@ class MutantService {
                 }
             });
         } catch (e) {
-            if (e === 'invalid') {
-                return false;
-            }
-            throw e;
+            return false;
         }
         return true;
+    }
+    async checkIfExists(dna) {
+        const ifExists = await checkIfExistsDNA(dna.join());
+        const row = ifExists.rows[0];
+        return row && row.is_mutant;
+    }
+    async saveRequest(dna, result) {
+        saveMutant(dna.join(), result)
     }
     /**
      * Returned is a Mutant
      * @param {String []} dna 
      * @returns boolean
      */
-    isMutant(dna) {
+    async isMutant(dna) {
+        let result = false;
         if (!this.isValid(dna)) {
             return false;
+        }
+        result = await this.checkIfExists(dna)
+        if (result !== undefined) {
+            return result;
         }
         let actualSequenceMutant = 0;
         for (let i = 0; i < dna.length; i++) {
@@ -46,7 +57,9 @@ class MutantService {
                 break;
             }
         }
-        return actualSequenceMutant >= sequenceMutant;
+        result = actualSequenceMutant >= sequenceMutant
+        this.saveRequest(dna, result)
+        return result;
     }
 }
 

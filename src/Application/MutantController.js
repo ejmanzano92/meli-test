@@ -5,9 +5,9 @@ const httpStatusCode = require('../Config/StatusCodes');
 
 const mutantRouter = express.Router();
 
-mutantRouter.post('/', (req, res) => {
+mutantRouter.post('/', async (req, res) => {
     const { dna } = req.body;
-    const response = mutantService.isMutant(dna);
+    const response = await mutantService.isMutant(dna);
     const responseBody = {
         mutant: response
     }
