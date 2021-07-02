@@ -5,6 +5,9 @@
 - Yarn 1.17.3 o superior.
 
 ## Instrucciones para correr.
+- Crear archivo `.env` con las siguientes env vars.
+    - db_link=postgresql://userDB:passwordDB@urlDatabase:portDB/database (cambiar userDB, passwordDB, urlDatabase, portDB, database con los datos correspondientes.)
+    - env=develop
 - Correr proyecto: ```yarn install && yarn run start```
 - Correr Tests: ```yarn install && yarn run test```
 - Correr Coverage: ```yarn install && yarn run coverage```
@@ -43,7 +46,7 @@
         --url https://meli-mutant-emil.herokuapp.com/meli-mutants/app/health-check/
     ```
 
-- mutant function: 
+- Detect mutant function: 
     ```
         curl --request POST \
         --url https://meli-mutant-emil.herokuapp.com/meli-mutants/mutant/ \
@@ -52,3 +55,14 @@
             "dna": ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
         }'
     ```
+- Get Stats
+    ```
+        curl --request GET \
+        --url https://meli-mutant-emil.herokuapp.com/meli-mutants/stats/
+    ```
+
+## Consideraciones:
+- La hice en node ya que vi una api bastante sencilla y que no necesitaba algo tan robusto como para hacerlo
+- El coverage está al 97%, no hice test de controller puesto a que solo controla el llamado al servicio.
+- El proyecto está en heroku por lo tanto el primer request siempre va a tardar un poco más mientras heroku inicia el Dyno.  
+- Asumi que si me pasas un ADN invalido (distinto tamaño, nxm o con letras no validas) devuelvo el 403 pero no guardo el registro en BD
